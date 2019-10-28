@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>添加用户</title>
+    <style>
+        body{
+            padding: 0;
+            margin-top: 0;
+            width: 100%;
+        }
+        .container {
+            margin: 30% auto;
+            width: 300px;
+            height: 200px;
+            border: 1px solid;
+            text-align: center;
+        }
+        .row{
+            margin: 10px 45px;
+        }
+        .container .row .btn{
+            margin: 0 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h3>添加用户</h3>
+    <form id="addUserFrom" action="/user/add" method="get">
+        <div class="row">
+            <label>用&nbsp;&nbsp;户&nbsp;&nbsp;名： </label>
+            <input type="text" name="username" placeholder="请输入用户名" size="15"/>
+        </div>
+        <div class="row">
+            <label>密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码：  </label>
+            <input type="password" name="password" placeholder="请输入密码" size="15"/>
+        </div>
+        <div class="row">
+            <label>确认密码：  </label>
+            <input type="password" name="repassword" placeholder="请再次输入密码" size="15"/>
+        </div>
+        <div class="row">
+            <input class="btn" type="submit" value="提交">
+            <input class="btn" type="reset" value="重置">
+        </div>
+    </form>
+</div>
+</body>
+</html>

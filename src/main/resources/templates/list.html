@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>用户列表</title>
+    <style>
+        .container{
+            width: 100%;
+        }
+        .box{
+            width: 100%;
+            margin: 0 auto;
+            text-align: center;
+        }
+        a{
+            text-decoration-line: none;
+            color: #000000;
+            font-size: 16px;
+            /*font-weight: bold;*/
+        }
+    </style>
+    <script>
+          function delUser(id) {
+            var flag = confirm("确定要删除吗？")
+            var baseUrl = 'http://localhost:8088';
+            if(flag){
+                window.location.href = baseUrl + '/user/del?id='+id
+                // window.open(url);
+                // window.location.href = baseUrl + 'login/list'
+            }
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <h2>用户列表</h2>
+        <table class="box" border="1" cellpadding="1" cellspacing="1">
+           <tr>
+               <th>用户ID</th>
+               <th>账号</th>
+               <th>密码</th>
+               <th>操作</th>
+           </tr>
+            <tr th:each="item:${list}">
+                <td width="25%" th:text="${item.getId()}"></td>
+                <td width="25%" th:text="${item.getUsername()}"></td>
+                <td width="25%" th:text="${item.getPassword()}"></td>
+                <td width="25%" th:if="${list}!=null">
+                    <a href="addUser.html">添加</a><span> | </span>
+                    <a href="modifyUser.html">修改</a><span> | </span>
+                    <a href="javascript:" th:onclick="'delUser('+ ${item.getId()} + ');'">删除</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+</body>
+</html>
