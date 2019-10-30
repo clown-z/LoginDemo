@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -60,5 +61,19 @@ public class LoginController {
         List<User> userList = userService.queryAllUser();
         model.addAttribute("list", userList);
         return "list";
+    }
+
+    @RequestMapping("/addUser")
+    public String add(Model model){
+        return "addUser";
+    }
+
+    @RequestMapping("/modifyUser")
+    public String modify(Model model, HttpServletRequest request){
+        String userId = request.getParameter("id");
+        String userName = request.getParameter("username");
+        model.addAttribute("id", userId);
+        model.addAttribute("username", userName);
+        return "modifyUser";
     }
 }

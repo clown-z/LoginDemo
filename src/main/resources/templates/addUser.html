@@ -10,41 +10,81 @@
             width: 100%;
         }
         .container {
-            margin: 30% auto;
-            width: 300px;
-            height: 200px;
+            margin: 15% auto;
+            width: 350px;
+            height: 220px;
             border: 1px solid;
             text-align: center;
         }
         .row{
-            margin: 10px 45px;
+            margin: 15px 45px;
         }
         .container .row .btn{
             margin: 0 20px;
         }
     </style>
+    <script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+
 </head>
 <body>
 <div class="container">
     <h3>添加用户</h3>
-    <form id="addUserFrom" action="/user/add" method="get">
+    <form id="addUserFrom" action="addUser.html" method="get" onsubmit="return valForm()">
         <div class="row">
             <label>用&nbsp;&nbsp;户&nbsp;&nbsp;名： </label>
-            <input type="text" name="username" placeholder="请输入用户名" size="15"/>
+            <input type="text" id="username" name="username" placeholder="请输入用户名" size="15"/>
         </div>
         <div class="row">
             <label>密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码：  </label>
-            <input type="password" name="password" placeholder="请输入密码" size="15"/>
+            <input type="password" id="password" name="password" placeholder="请输入密码" size="15"/>
         </div>
         <div class="row">
             <label>确认密码：  </label>
-            <input type="password" name="repassword" placeholder="请再次输入密码" size="15"/>
+            <input type="password" id="repassword" name="repassword" placeholder="请再次输入密码" size="15"/>
         </div>
         <div class="row">
             <input class="btn" type="submit" value="提交">
             <input class="btn" type="reset" value="重置">
         </div>
     </form>
+    <script>
+        var name = document.getElementById('username');
+        var pwd = document.getElementById('password');
+        var repwd = document.getElementById('repassword');
+        console.log(name+  pwd.value + repwd.value)
+        //对用户名和密码进行校验
+        function valForm() {
+            alert(name + pwd.value + repwd.value)
+            console.log(name.value + pwd.value + repwd.value)
+            return valUserName()&&valPwd();
+        }
+
+        //校验用户名
+        function valUserName() {
+            var p = /^\w\w{7,11}$/;//用户名必须为8-12为字母或数字
+            var r = p.test(name.value);//校验
+            if(!r) {
+                //校验不通过
+                name.style.display = 'inline-block';//显示
+                name.focus();
+                return false;
+            }
+            return true;
+        }
+
+        //校验密码
+        function valPwd(){
+            var p=/^\d\d{5}$/;//6位数字
+            var r=p.test(pwd.value);//校验
+            if(!r){
+                pwd.style.display='inline-block';
+                pwd.focus();//获取焦点
+                return false;
+            }
+            return true;
+        }
+
+    </script>
 </div>
 </body>
 </html>

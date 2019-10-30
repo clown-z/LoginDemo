@@ -3,6 +3,7 @@ package com.clown.logindemo.controller;
 import com.clown.logindemo.entity.User;
 import com.clown.logindemo.service.UserService;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
@@ -16,6 +17,15 @@ public class UserController {
 
     @Resource
     private UserService userService;
+
+    @RequestMapping("/s")
+    public Map<String, Object> sllUser() {
+        Map<String, Object> molMap = new HashMap<>();
+        List<?> userList = userService.queryAllUser();
+        System.out.println(userList);
+        molMap.put("list", userList);
+        return molMap;
+    }
 
     @RequestMapping("/all")
     public Map<String, Object> queryAllUser() {
@@ -39,7 +49,7 @@ public class UserController {
         return molMap;
     }
 
-    @RequestMapping("/add")
+    @RequestMapping(value = "/add",method = RequestMethod.POST)
     public Map<String, Object> addUser(User user) {
         Map<String, Object> molMap = new HashMap<>();
         String msg = "添加用户信息失败";

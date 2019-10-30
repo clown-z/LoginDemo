@@ -10,15 +10,14 @@
             width: 100%;
         }
         .container {
-            margin: 30% auto;
-            width: 300px;
-            height: 200px;
+            margin: 15% auto;
+            width: 350px;
+            height: 220px;
             border: 1px solid;
             text-align: center;
         }
         .row{
-            margin: 10px 45px;
-            text-align: left;
+            margin: 15px 45px;
         }
         .container .row .btn{
             margin: 0 20px;
@@ -27,12 +26,14 @@
 </head>
 <body>
 <div class="container">
-    <h3>修改用户</h3>
+    <h3>修改密码</h3>
     <form id="modifyUserFrom" action="/user/modify" method="get">
+        <!--用户ID-->
+        <input type="hidden" th:value="${id}" />
         <div class="row">
             <label>用户名： </label>
-            <span th:text="${username}">123</span>
-<!--            <input type="text" name="username" placeholder="请输入用户名"/>-->
+<!--            <span th:text="${username}">username</span>-->
+            <input type="text" name="username" placeholder="请输入用户名" size="15" disabled="disabled" th:value="${username}"/>
         </div>
         <div class="row">
             <label>密&nbsp;&nbsp;&nbsp;码：  </label>

@@ -26,7 +26,7 @@
             if(flag){
                 window.location.href = baseUrl + '/user/del?id='+id
                 // window.open(url);
-                window.location.href = baseUrl + 'login/list'
+                // window.location.href = baseUrl + 'login/list'
             }
         }
     </script>
@@ -46,8 +46,9 @@
                 <td width="25%" th:text="${item.getUsername()}"></td>
                 <td width="25%" th:text="${item.getPassword()}"></td>
                 <td width="25%" th:if="${list}!=null">
-                    <a href="addUser.html">添加</a><span> | </span>
-                    <a href="modifyUser.html">修改</a><span> | </span>
+                    <a href="/login/addUser">添加</a><span> | </span>
+<!--                    <a href="modifyUser.html">修改</a><span> | </span>-->
+                    <a th:href="@{'/login/modifyUser?id=' + ${item.getId()} + '&username=' + ${item.getUsername()}}">修改</a><span> | </span>
                     <a href="javascript:" th:onclick="'delUser('+ ${item.getId()} + ');'">删除</a>
                 </td>
             </tr>
